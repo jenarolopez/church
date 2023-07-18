@@ -3,6 +3,7 @@ export interface IMember {
   firstName: string
   middleName: string
   lastName: string
+  profile: string
   birthDay: Date
   gender: string
   contactNo: string
@@ -56,12 +57,19 @@ export interface IFamilyBackground {
   numberOfChristians: number;
 }
 
+export interface IName {
+  firstName: string
+  lastName: string
+  middleName: string
+}
+
 
 export const members = [
   {
     firstName: "John",
     middleName: "Robert",
     lastName: "Doe",
+    profile: "https://images.unsplash.com/photo-1504199367641-aba8151af406?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8M3x8fGVufDB8fHx8fA%3D%3D&w=1000&q=80",
     birthDay: new Date(1990, 5, 15),
     gender: "Male",
     contactNo: "123-456-7890",
@@ -107,6 +115,7 @@ export const members = [
     firstName: "Alice",
     middleName: "Elizabeth",
     lastName: "Smith",
+    profile: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?cs=srgb&dl=pexels-andrea-piacquadio-774909.jpg&fm=jpg",
     birthDay: new Date(1985, 10, 20),
     gender: "Female",
     contactNo: "987-654-3210",
@@ -153,6 +162,7 @@ export const members = [
     firstName: "Michael",
     middleName: "James",
     lastName: "Johnson",
+    profile: "https://media.istockphoto.com/id/1007763808/photo/portrait-of-handsome-latino-african-man.jpg?s=612x612&w=0&k=20&c=XPL1ukeC99OY8HBfNa_njDujOPf9Xz4yCEOo7O3evU0=",
     birthDay: new Date(1992, 8, 5),
     gender: "Male",
     contactNo: "555-123-4567",
