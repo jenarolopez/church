@@ -112,14 +112,14 @@ const RegistrationModal = (props: NewModal) => {
                   </div>
                 </div>
               </div>
-              <div className="text-gray-700 flex flex-col gap-1">
+              <div className="text-gray-700 flex flex-col gap-1 col-span-2 tablet:col-span-1">
                 <span className="font-bold">Email Address</span>
                 <input
                   className="p-2 pl-2 pr-2 rounded-md outline-slate-500 text-md text-gray-900 border-gray-300 border"
                   type="text"
                 />
               </div>
-              <div className="text-gray-700 flex flex-col gap-1">
+              <div className="text-gray-700 flex flex-col gap-1 col-span-2 tablet:col-span-1">
                 <span className="font-bold">Contact number</span>
                 <input
                   className="p-2 pl-2 pr-2 rounded-md outline-slate-500 text-md text-gray-900 border-gray-300 border"
