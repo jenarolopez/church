@@ -15,8 +15,8 @@ const RegistrationModal = (props: NewModal) => {
         header={false}
       >
         <div className="flex flex-col relative h-[95vh] tablet:h-[75vh] tablet:gap-5 gap-2">
-          <div className="self-center tablet:absolute top-[-6rem] bg-slate-200 w-40 h-40 p-2 tablet:p-0 rounded-full flex flex-col items-center justify-center mt-4 tablet:mt-0">
-            <div className="w-36 h-36 rounded-full bg-gray-500 self-center"></div>
+          <div className="self-center tablet:absolute top-[-6rem] bg-slate-200 w-244 h-24 tablet:w-40 tablet:h-40 p-2 tablet:p-0 rounded-full flex flex-col items-center justify-center mt-4 tablet:mt-0">
+            <div className="w-20 h-20 tablet:w-36 tablet:h-36 rounded-full bg-gray-500 self-center"></div>
           </div>
           <h1 className="text-2xl text-slate-700 text-center tablet:mt-[4.5rem]">
             New Member
