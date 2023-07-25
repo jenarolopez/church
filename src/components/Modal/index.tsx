@@ -5,34 +5,29 @@ import { default as TransitionModal } from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { IModalProps } from './modalInterface';
 
 const defaultStyle = {
   position: 'absolute' as 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  bgcolor: 'background.paper',
   boxShadow: 24,
   p: 4,
   borderRadius: '.5rem'
 };
 
-interface IProps {
-  isOpen: boolean, 
-  onClose: VoidFunction,
-  children: string | React.ReactElement | React.ReactNode | JSX.Element ,
-  width?: number
-}
 
-const Modal = (props: IProps) => {
 
-  if (props.isOpen) {
+const Modal = ({isOpen, onClose, width = 400, header = false, children}: IModalProps) => {
+
+  if (isOpen) {
     return (
       <TransitionModal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
-        open={props.isOpen}
-        onClose={props.onClose}
+        open={isOpen}
+        onClose={onClose}
         closeAfterTransition
         slots={{ backdrop: Backdrop }}
         slotProps={{
@@ -42,20 +37,20 @@ const Modal = (props: IProps) => {
         }}
         style={{ marginLeft: '10px', marginRight: '10px' }}
       >
-        <Fade in={props.isOpen}>
-          <Box sx={(theme)=>{
-            
+        <Fade in={isOpen}>
+          <Box className='bg-white' sx={(theme)=>{
             return {
               ...defaultStyle,
+              padding: 0,
               [theme.breakpoints.down('md')] : {
                 width: '100%'
               },
               [theme.breakpoints.up('md')] : {
-                width: props.width
+                width: width
               }
             }
           }}>
-            {props.children}
+            {children}
           </Box>
         </Fade>
       </TransitionModal>

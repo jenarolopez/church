@@ -7,7 +7,9 @@ module.exports = {
     fontFamily: {
       sans: ['"PT Sans"', 'sans-serif'],
       glory: ["glory","sans-serif"],
-      pop: ["pop","sans"],
+      pop:  `-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif`,
     },
     screens: {
       'tablet': '640px',

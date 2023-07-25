@@ -9,10 +9,11 @@ import {
 import DataTable from "../../../components/Table";
 import { GridColDef, GridValueGetterParams } from "@mui/x-data-grid/models";
 import Modal from "../../../components/Modal";
+import Select from "../../../components/Select";
+import RegistrationModal from "./Modal";
 
 const Members = () => {
-
-  const [isOpen, setIsOpen] = React.useState(false)
+  const [isOpen, setIsOpen] = React.useState(false);
   const columns: GridColDef[] = [
     { field: "id", headerName: "ID", width: 100 },
     {
@@ -74,21 +75,23 @@ const Members = () => {
 
   return (
     <div className="flex-1 backdrop-blur-xl bg-white/30">
-
-      <Modal
-        isOpen={isOpen}
-        onClose={() => { setIsOpen(false) }}
-        width={700}
-      >
-        <div>
-          <h1 className="text-2xl font-bold text-gray-800">Create Member</h1>
-        </div>
-      </Modal>
       <div className="flex flex-col w-[95%] ml-auto mr-auto relative desktop:w-[80%] laptop:w-[90%] tablet:w-[90%] pt-4 tablet:pt-10">
         <div className="mb-3 tablet:mb-4">
           <h1 className="text-3xl font-bold col">Church Members</h1>
         </div>
-        <button onClick={() => { setIsOpen(true) }}>123123</button>
+        <button
+          onClick={() => {
+            setIsOpen(true);
+          }}
+        >
+          123123
+        </button>
+        <RegistrationModal
+          isOpen={isOpen}
+          onClose={() => {
+            setIsOpen(false);
+          }}
+        />
         <DataTable
           rows={members.map((data, index) => {
             return {
