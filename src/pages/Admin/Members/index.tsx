@@ -1,77 +1,42 @@
-import React from "react";
-import { members } from "../../../Interface";
+import React, { useEffect } from "react";
 import { ITable, IMember } from "../../../Interface";
 import {
   calculateAge,
   getAddressString,
   getFullName,
 } from "../../../utils/helper";
-import DataTable from "../../../components/Table";
-import { GridColDef, GridValueGetterParams } from "@mui/x-data-grid/models";
+import DataTable, { ITableItemProps } from "../../../components/Table";
 import Modal from "../../../components/Modal";
 import Select from "../../../components/Select";
 import RegistrationModal from "./Modal";
-
+import { setLoading } from "../../../reducer/loading/loadingSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchMembers } from "../../../reducer/member/action";
+import { getMembers } from "../../../reducer/member/membersSlice";
+// import { UserCircleIcon } from "@heroicons/react/16/solid";
+import UserCircle from "../../../assets/images/no-profile.svg";
+import {
+  getTableLimit,
+} from "../../../reducer/settings/settingsSlice";
+import { redirect, useNavigate } from "react-router-dom";
+import { setTableLimit } from "../../../reducer/settings/action";
 const Members = () => {
   const [isOpen, setIsOpen] = React.useState(false);
-  const columns: GridColDef[] = [
-    { field: "id", headerName: "ID", width: 100 },
-    {
-      field: "profile",
-      headerName: "Image",
-      width: 100,
-      sortable: false,
-      renderCell: (e) => {
-        return (
-          <div className="h-10 w-10">
-            <img
-              src={e.value}
-              className="w-full h-full object-cover rounded-full"
-              alt={e.row.firstName}
-            />
-          </div>
-        );
-      },
-    },
-    { field: "firstName", headerName: "First Name", width: 160 },
-    { field: "lastName", headerName: "Last Name", width: 160 },
-    {
-      field: "age",
-      headerName: "Age",
-      type: "number",
-      width: 100,
-      valueGetter: (params: GridValueGetterParams) =>
-        calculateAge(params.row.birthDay),
-    },
-    {
-      field: "fullName",
-      headerName: "Full name",
-      description: "This column has a value getter and is not sortable.",
-      sortable: false,
-      width: 160,
-      valueGetter: (params: GridValueGetterParams) =>
-        getFullName({
-          firstName: params.row.firstName,
-          middleName: params.row.middleName,
-          lastName: params.row.lastName,
-        }),
-    },
-    {
-      field: "contactNo",
-      headerName: "Contact",
-      width: 130,
-    },
-    {
-      field: "address",
-      headerName: "Address",
-      description: "This column has a value getter and is not sortable.",
-      sortable: false,
-      minWidth: 200,
-      flex: 1,
-      valueGetter: (params: GridValueGetterParams) =>
-        getAddressString(params.row.address),
-    },
-  ];
+  const [inputSearch, setInputSearch] = React.useState("");
+  const navigate = useNavigate();
+  const dataRenderer = (props: ITableItemProps) => {
+    // console.log(props, "1222");
+  };
+
+  const dispatch = useDispatch() as Function;
+  const members = useSelector(getMembers);
+  const tableLimit = useSelector(getTableLimit);
+
+  useEffect(() => {
+    dispatch(fetchMembers({ limit: tableLimit, page: 1 }));
+
+    console.log(redirect("/"), "123123");
+  }, [dispatch]);
 
   return (
     <div className="flex-1 backdrop-blur-xl bg-white/30">
@@ -79,28 +44,116 @@ const Members = () => {
         <div className="mb-3 tablet:mb-4">
           <h1 className="text-3xl font-bold col">Church Members</h1>
         </div>
-        <button
-          onClick={() => {
-            setIsOpen(true);
-          }}
-        >
-          123123
-        </button>
         <RegistrationModal
           isOpen={isOpen}
           onClose={() => {
             setIsOpen(false);
           }}
         />
+
         <DataTable
-          rows={members.map((data, index) => {
-            return {
-              id: index,
-              ...data,
-            };
-          })}
-          columnRender={columns}
-          className="w-full h-[70vh] backdrop-blur-xl bg-white/70 rounded-md"
+          rows={members.list}
+          renderRow={dataRenderer}
+          onClick={(id) => {
+            navigate(`view/${id}`);
+          }}
+          pagination={{
+            currentPage: members.currentPage,
+            hasNextPage: members.hasNextPage,
+            hasPrevPage: members.hasPrevPage,
+            totalCount: members.totalCount,
+            totalPages: members.totalPages,
+            onChangePage: (page) => {
+              dispatch(fetchMembers({ limit: tableLimit, page }));
+            },
+          }}
+          filterElement={
+            <div>
+              <select>
+                <option value="0">Default</option>
+                <option value="1">First Name</option>
+                <option value="3">Last Name</option>
+                <option value="4">Age</option>
+              </select>
+            </div>
+          }
+          addButton={
+            <button
+              onClick={() => {
+                setIsOpen(true);
+              }}
+              className="flex justify-between flex-row text-sm focus:ring-2 focus:text-white ring-slate-600 px-3 py-2 rounded bg-slate-500 hover:bg-slate-600 text-gray-200 font-bold ring-offset-1"
+            >
+              Add User
+            </button>
+          }
+          setTableLimit={(e: Event) => {
+            const target = e.target as HTMLSelectElement;
+            dispatch(setTableLimit(parseInt(target.value)));
+          }}
+          searchInputValue={inputSearch}
+          searchOnChange={(e) => {
+            setInputSearch(e.target.value);
+          }}
+          headers={[
+            {
+              key: "id",
+              title: "ID",
+              className: "w-20 justify-center min-w-[5rem]",
+            },
+            {
+              title: "Image",
+              className: "w-16 justify-center",
+              dataRender: (props: IMember) => {
+                return (
+                  <div className="w-10 h-10 bg-slate-100 rounded-full overflow-hidden">
+                    <img
+                      className="w-full h-full object-cover"
+                      src={props.image ? props.image : UserCircle}
+                      alt={props.firstName}
+                      onError={function (e) {
+                        (e.target as HTMLImageElement).src = UserCircle;
+                      }}
+                    />
+                  </div>
+                );
+              },
+            },
+            { key: "firstName", title: "First name" },
+            { key: "lastName", title: "Last name" },
+            {
+              title: "Age",
+              className: "w-16  min-w-[4rem]",
+              dataRender: (props: IMember) => {
+                return calculateAge(props.birthday);
+              },
+            },
+            {
+              title: "Contact",
+              dataRender: (props: IMember) => {
+                return props.addresses[0].contactNumber;
+              },
+            },
+            {
+              title: "Address",
+              className: "w-[200px] min-w-[200px]",
+              dataRender: (props: IMember) => {
+                if (props.addresses.length > 0) {
+                  return (
+                    <span
+                      className="line-clamp-2"
+                      title={getAddressString(props.addresses[0])}
+                    >
+                      {getAddressString(props.addresses[0])}
+                    </span>
+                  );
+                } else {
+                  return "";
+                }
+              },
+            },
+          ]}
+          className="w-full min-h-[500px] h-[70vh] max-h-[1000px] backdrop-blur-xl bg-white rounded-md"
         />
       </div>
     </div>

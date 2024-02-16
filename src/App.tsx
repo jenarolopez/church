@@ -1,18 +1,16 @@
-import React from "react";
-import logo from "./logo.svg";
+import React, { useEffect } from "react";
 import "./App.css";
 import Router from "./routes/Router";
-
-import { ThemeProvider, createTheme } from "@mui/material";
-
+import store from "./store";
+import { Provider } from "react-redux";
+import "react-datepicker/dist/react-datepicker.css";
 function App() {
-  const theme = createTheme({});
   return (
-    <ThemeProvider theme={theme}>
+    <Provider store={store}>
       <div className="App">
         <Router />
       </div>
-    </ThemeProvider>
+    </Provider>
   );
 }
 
