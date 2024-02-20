@@ -17,9 +17,9 @@ import { getMembers } from "../../../reducer/member/membersSlice";
 import UserCircle from "../../../assets/images/no-profile.svg";
 import {
   getTableLimit,
+  setTableLimit,
 } from "../../../reducer/settings/settingsSlice";
 import { redirect, useNavigate } from "react-router-dom";
-import { setTableLimit } from "../../../reducer/settings/action";
 const Members = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [inputSearch, setInputSearch] = React.useState("");
@@ -34,9 +34,7 @@ const Members = () => {
 
   useEffect(() => {
     dispatch(fetchMembers({ limit: tableLimit, page: 1 }));
-
-    console.log(redirect("/"), "123123");
-  }, [dispatch]);
+  }, [dispatch, tableLimit]);
 
   return (
     <div className="flex-1 backdrop-blur-xl bg-white/30">

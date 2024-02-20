@@ -8,7 +8,7 @@ const initialState: IMembersSlice = {
   list: [],
   hasNextPage: false,
   hasPrevPage: false,
-  totalPages: 0,
+  totalPages: 1,
   totalCount: 0,
   currentPage: 1,
   status: "idle",
