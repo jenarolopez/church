@@ -1,33 +1,20 @@
 import React, { useEffect, useRef, useState } from "react";
 import { classNames } from "../../../utils/helper";
 import { publicRequest } from "../../../request/request";
+import { signIn } from "../../../reducer/user/action";
+import { useDispatch, useSelector } from "react-redux";
+import { getUser } from "../../../reducer/user/userSlice";
 
 const SignIn = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [passwordError, setPasswordError] = useState({
-    error: false,
-    message: "",
-  });
-  const [usernameError, setUsernameError] = useState({
-    error: false,
-    message: "",
-  });
+  const dispatch = useDispatch() as Function;
 
   const handleLogin = () => {
-    setPasswordError({
-      error: true,
-      message: "",
-    });
-    const payload = {
-      username,
-      password,
-    };
-
-    publicRequest.signIn(payload).then(e=>{
-      console.log(e)
-    })
+    dispatch(signIn({ username, password }));
   };
+
+  const user = useSelector(getUser);
 
   return (
     <div>
@@ -43,7 +30,7 @@ const SignIn = () => {
               <div className="flex flex-col gap-1">
                 <span className="flex flex-row items-center gap-2">
                   <h3 className="subpixel-antialiased text-lg">Username</h3>{" "}
-                  {usernameError.error && (
+                  {user.error === "username" && (
                     <span className="text-sm text-red-500">
                       *Invalid Username
                     </span>
@@ -53,11 +40,10 @@ const SignIn = () => {
                   value={username}
                   onChange={(e) => {
                     setUsername(e.target.value);
-                    setUsernameError({ error: false, message: "" });
                   }}
                   className={classNames(
                     "p-2 pl-2 pr-2 rounded-md outline-slate-500 text-md text-gray-900 border",
-                    !usernameError.error ? "border-gray-300" : "border-red-300"
+                    !(user.error === "username" || user.error === "password") ? "border-gray-300" : "border-red-300"
                   )}
                   type="text"
                 />
@@ -65,7 +51,7 @@ const SignIn = () => {
               <div className="flex flex-col gap-1">
                 <span className="flex flex-row items-center gap-2">
                   <h3 className="subpixel-antialiased text-lg">Password</h3>{" "}
-                  {passwordError.error && (
+                  {user.error === "password" && (
                     <span className="text-sm text-red-500">
                       *Invalid Password
                     </span>
@@ -75,13 +61,12 @@ const SignIn = () => {
                   value={password}
                   onChange={(e) => {
                     setPassword(e.target.value);
-                    setPasswordError({ error: false, message: "" });
                   }}
                   className={classNames(
                     "p-2 pl-2 pr-2 rounded-md outline-slate-500 text-md text-gray-900 border",
-                    !passwordError.error ? "border-gray-300" : "border-red-300"
+                    !(user.error === "username" || user.error === "password") ? "border-gray-300" : "border-red-300"
                   )}
-                  type="text"
+                  type="password"
                 />
               </div>
             </div>

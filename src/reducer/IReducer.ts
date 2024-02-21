@@ -21,12 +21,28 @@ export interface ISettingsSlice {
   table: {
     limit: number;
   };
-};
+}
+
+export interface IUser {
+  data: {
+    username: string;
+    email: string;
+    firstName: string;
+    lastName: string;
+    role: string;
+    id: number;
+  };
+  status: "idle" | "loading" | "succeeded" | "failed";
+  error: string;
+  message: string;
+  token: string;
+}
 
 export interface IRootReducer {
   member: {
     member: IMemberSlice;
     members: IMembersSlice;
   };
-  settings: ISettingsSlice
+  user: IUser;
+  settings: ISettingsSlice;
 }
