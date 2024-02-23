@@ -4,17 +4,22 @@ import { publicRequest } from "../../../request/request";
 import { signIn } from "../../../reducer/user/action";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "../../../reducer/user/userSlice";
+import { setLoading } from "../../../reducer/loading/loadingSlice";
+import { useNavigate } from "react-router-dom";
 
 const SignIn = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch() as Function;
-
+  const navigate = useNavigate() as Function;
   const handleLogin = () => {
     dispatch(signIn({ username, password }));
   };
 
   const user = useSelector(getUser);
+
+ 
+
 
   return (
     <div>
@@ -43,7 +48,9 @@ const SignIn = () => {
                   }}
                   className={classNames(
                     "p-2 pl-2 pr-2 rounded-md outline-slate-500 text-md text-gray-900 border",
-                    !(user.error === "username" || user.error === "password") ? "border-gray-300" : "border-red-300"
+                    !(user.error === "username" || user.error === "password")
+                      ? "border-gray-300"
+                      : "border-red-300"
                   )}
                   type="text"
                 />
@@ -64,7 +71,9 @@ const SignIn = () => {
                   }}
                   className={classNames(
                     "p-2 pl-2 pr-2 rounded-md outline-slate-500 text-md text-gray-900 border",
-                    !(user.error === "username" || user.error === "password") ? "border-gray-300" : "border-red-300"
+                    !(user.error === "username" || user.error === "password")
+                      ? "border-gray-300"
+                      : "border-red-300"
                   )}
                   type="password"
                 />

@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { redirect } from 'react-router-dom';
-
+import Cookie from "js-cookie"
 // Create an instance with custom configurations using environment variables
 const axiosInstance = axios.create({
   baseURL: process.env.API_BASE_URL || "http://localhost:9000", // Set the base URL from environment variable or a default value
@@ -13,6 +13,8 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   (config) => {
+    const token = Cookie.get('token')
+    config.headers.Authorization = `Bearer ${token}`;
     return config;
   },
   (error) => {
