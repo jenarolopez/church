@@ -12,6 +12,9 @@ module.exports = {
     },
 
     extend: {
+      backgroundColor: {
+        "semi-transparent": "rgba(0,0,17,0.55)"
+      },
       screens: {
         tablet: "640px",
         // => @media (min-width: 640px) { ... }

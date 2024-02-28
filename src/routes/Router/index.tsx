@@ -1,5 +1,9 @@
 import React, { useEffect } from "react";
-import { createBrowserRouter, redirect, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  redirect,
+  RouterProvider,
+} from "react-router-dom";
 import Admin from "../../pages/Admin";
 import PrivateRoute from "../PrivateRoute";
 import SignIn from "../../pages/Public/SignIn";
@@ -10,6 +14,9 @@ import { useSelector } from "react-redux";
 import { BookmarkIcon } from "@heroicons/react/16/solid";
 import { getLoading } from "../../reducer/loading/loadingSlice";
 import Member from "../../pages/Admin/Member";
+import { store } from "../../store";
+import Cookies from "js-cookie";
+import { publicRequest } from "../../request/request";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +36,17 @@ const router = createBrowserRouter([
   {
     path: "/sign-in",
     element: <SignIn />,
+    loader: async () => {
+      const token = Cookies.get("token");
+      if (token) {
+        try {
+          const validateResult = await publicRequest
+            .validateToken()
+          return redirect("/admin/members")
+        } catch (e) {}
+      }
+      return false;
+    },
   },
   {
     path: "/",

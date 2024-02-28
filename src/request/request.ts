@@ -11,7 +11,9 @@ const userRequest = {
 };
 
 const publicRequest = {
-  signIn: (data: {username: String, password: String}) => axiosInstance.post(api.SIGN_IN, { ...data }),
+  signIn: (data: { username: String; password: String }) =>
+    axiosInstance.post(api.SIGN_IN, { ...data }),
+  validateToken: () => axiosInstance.get(api.VALIDATE_TOKEN, { timeout: 2000 }),
 };
 
 export { userRequest, publicRequest };
