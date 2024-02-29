@@ -17,6 +17,8 @@ import Member from "../../pages/Admin/Member";
 import { store } from "../../store";
 import Cookies from "js-cookie";
 import { publicRequest } from "../../request/request";
+import PublicRoute from "../PublicRoute";
+import AboutUs from "../../pages/Public/About-us";
 
 const router = createBrowserRouter([
   {
@@ -40,9 +42,8 @@ const router = createBrowserRouter([
       const token = Cookies.get("token");
       if (token) {
         try {
-          const validateResult = await publicRequest
-            .validateToken()
-          return redirect("/admin/members")
+          const validateResult = await publicRequest.validateToken();
+          return redirect("/admin/members");
         } catch (e) {}
       }
       return false;
@@ -50,7 +51,17 @@ const router = createBrowserRouter([
   },
   {
     path: "/",
-    element: <Welcome />,
+    element: <PublicRoute />,
+    children: [
+      {
+        path: "/",
+        element: <Welcome />,
+      },
+      {
+        path: "/about-us",
+        element: <AboutUs />,
+      },
+    ],
   },
 ]);
 

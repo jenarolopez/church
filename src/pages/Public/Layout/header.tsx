@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import Church from "../../../../assets/images/church-icon.jpg";
+import Church from "../../../assets/images/church-icon.jpg";
 import { Bars3Icon, ChevronDownIcon } from "@heroicons/react/24/solid";
-import { classNames } from "../../../../utils/helper";
 import { useLocation } from "react-router-dom";
 import { AdjustmentsHorizontalIcon } from "@heroicons/react/16/solid";
-import Divider from "../../../../assets/Divider";
+import { classNames } from "../../../utils/helper";
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpened, setIsMenuOpened] = useState(false);

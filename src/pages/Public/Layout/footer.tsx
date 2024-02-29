@@ -1,5 +1,5 @@
 import React from "react";
-import Church from "../../../../assets/images/church.jpg";
+import Church from "../../../assets/images/church.jpg";
 import { EnvelopeIcon, MapPinIcon, PhoneIcon } from "@heroicons/react/24/solid";
 const Footer = () => {
   return (
