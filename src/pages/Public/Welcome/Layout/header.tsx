@@ -28,11 +28,11 @@ export default function Header() {
     <div
       className={classNames(
         "sticky top-0 z-40 w-full flex flex-row justify-between shadow px-5 transition-all ease-in-out duration-500",
-        isScrolled ? "h-16 bg-slate-50" : "h-28 bg-slate-900"
+        isScrolled ? "h-14 bg-slate-50" : "h-20 bg-slate-900"
       )}
     >
       <div className="h-full self-center flex flex-row py-2">
-        <img src={Church} className="h-full w-44 self-center object-contain" />
+        <img src={Church} className="h-full w-44 self-center object-contain object-left" />
       </div>
       <div className="self-center">
         <ul className={classNames("hidden flex-row gap-4 text-sm font-pop antialiased laptop:flex",  isScrolled ? "text-slate-700" : "text-slate-200")}>
@@ -55,7 +55,7 @@ export default function Header() {
 
         <span>
           <button onClick={()=>{setIsMenuOpened(!isMenuOpened)}} className="laptop:hidden flex py-[3px] px-[5px] justify-center items-center flex-row p-[8px] focus:ring-2 focus:text-white ring-slate-600 rounded bg-slate-300 hover:bg-slate-200 font-bold ring-offset-1">
-            <Bars3Icon className="w-8 h-8 text-slate-600" />
+            <Bars3Icon className="w-6 h-6 laptop:w-8 laptop:h-8 text-slate-600" />
           </button>
         </span>
       </div>

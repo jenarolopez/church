@@ -107,11 +107,12 @@ const Welcome = () => {
             </span>
           </div>
         </section>
-        <section className="flex flex-col items-center font-pop mb-20">
+        <section className="flex flex-col items-center font-pop laptop:mb-20 mb-40">
           <FireIcon strokeWidth={0.5} className={"w-28 h-28 text-slate-400"} />
           <h3
-            style={{ letterSpacing: "20px" }}
-            className={"text-2xl text-slate-400 mt-2 text-center"}
+            className={
+              "text-slate-400 mt-2 text-center tracking-[5px] laptop:tracking-[20px]"
+            }
           >
             WELCOME TO
           </h3>
@@ -143,40 +144,40 @@ const Welcome = () => {
             borderBottomRightRadius: "40% 5%",
           }}
         >
-          <div className="grid grid-cols-1 desktop:grid-cols-2 px-48 gap-12 pt-20">
-            <div className="flex flex-col items-center desktop:items-end pt-10 pb-20">
+          <div className="flex flex-col-reverse laptop:flex-row laptop:px-48 px-2 laptop:gap-12 pt-20">
+            <div className="flex flex-col items-center laptop:items-end laptop:pt-10 pb-20 w-full laptop:w-1/2 pt-[350px]">
               <FireIcon
                 strokeWidth={0.5}
                 className={"w-28 h-28 text-slate-100"}
               />
-                <h3 className="text-center desktop:text-left tracking-tight  text-slate-200 desktop:float-right text-[25px]">
-                  JOIN US EVERY
-                </h3>
-                <br />
-                <h3 className="tracking-tight font-glory text-slate-200 desktop:float-right text-[25px] translate-y-[-30px]">
-                  SUNDAY FOR OUR
-                </h3>
-                <h3 className="text-center desktop:text-left tracking-tighter text-white desktop:float-right text-[50px] font-bold">
-                  ONLINE
-                </h3>
-                <br />
-                <h3 className="tracking-tighter text-white desktop:float-right text-[50px] font-bold translate-y-[-40px]">
-                  SERVICE
-                </h3>
-                <h3 className="text-center desktop:text-left tracking-tight  text-slate-200 desktop:float-right text-sm">
-                  09:00 AM & 1:00 PM at WOLCA APALIT
-                </h3>
-                <br />
-                <h3 className="tracking-tight font-glory text-slate-200 desktop:float-right text-sm translate-y-[-20px]">
-                  Livestream at FB at Youtube Premiere at 7:00 PM
-                </h3>
+              <h3 className="text-center laptop:text-left tracking-tight text-slate-200 laptop:float-right text-[25px]">
+                JOIN US EVERY
+              </h3>
+              <br />
+              <h3 className="tracking-tight font-glory text-slate-200 laptop:float-right text-[25px] translate-y-[-30px]">
+                SUNDAY FOR OUR
+              </h3>
+              <h3 className="text-center laptop:text-left tracking-tighter text-white laptop:float-right text-[50px] font-bold">
+                ONLINE
+              </h3>
+              <br />
+              <h3 className="tracking-tighter text-white laptop:float-right text-[50px] font-bold translate-y-[-40px]">
+                SERVICE
+              </h3>
+              <h3 className="text-center laptop:text-left tracking-tight  text-slate-200 laptop:float-right text-sm">
+                09:00 AM & 1:00 PM at WOLCA APALIT
+              </h3>
+              <br />
+              <h3 className="tracking-tight font-glory text-slate-200 laptop:float-right text-sm translate-y-[-20px]">
+                Livestream at FB at Youtube Premiere at 7:00 PM
+              </h3>
               <button className="uppercase text-sm mt-5 bg-transparent py-3 px-5 rounded-md font-bold border-2 border-blue-400 text-white shadow-md transition-all duration-500 hover:bg-blue-900">
                 WATCH PREVIOUS VIDEOS
               </button>
             </div>
-            <span className="relative hidden desktop:block">
-              <img src={PhoneLive} className="absolute z-[10]  h-[789px]" />
-            </span>
+            <div className="relative w-full laptop:w-1/2">
+              <img src={PhoneLive} className="z-[10] laptop:h-[789px] w-[250px] laptop:w-auto absolute left-1/2 transform -translate-x-1/2 -translate-y-[180px] laptop:left-0 laptop:transform-none" />
+            </div>
           </div>
           <div
             className="w-full h-full top-0 overflow-hidden absolute z-[-10] bg-semi-transparent"
@@ -190,15 +191,15 @@ const Welcome = () => {
             </Parallax>
           </div>
         </section>
-        <section className="flex flex-col items-center font-pop mb-20 mt-64">
+        <section className="flex flex-col items-center font-pop mb-20 mt-20 laptop:mt-64">
           <FireIcon strokeWidth={0.5} className={"w-28 h-28 text-slate-400"} />
 
           <h1 className="font-bold tracking-wider text-4xl text-slate-700 mt-2">
             WOLCA
           </h1>
           <h3
-            style={{ letterSpacing: "20px" }}
-            className={"text-2xl text-slate-400"}
+           
+            className={"text-2xl text-slate-400 tracking-[5px] laptop:tracking-[20px]"}
           >
             ANNOUNCEMENTS
           </h3>
@@ -243,13 +244,13 @@ const Welcome = () => {
           }}
         >
           <div className="px-5 tablet:px-20 py-20 flex flex-row">
-            <span className="w-1/2">
+            <span className="w-1/2 hidden laptop:block">
               <img
                 src={Church}
                 className="w-full mt-12 h-full object-cover rounded-tl-[60px] rounded-br-[60px]"
               />
             </span>
-            <div className="flex flex-col items-start pt-10 gap-4 w-1/2 pl-16">
+            <div className="flex flex-col pt-10 gap-4 w-full laptop:w-1/2 laptop:pl-16 items-center laptop:items-start">
               <FireIcon
                 strokeWidth={0.5}
                 className={"w-28 h-28 text-slate-100"}
