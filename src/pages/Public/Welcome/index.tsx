@@ -256,11 +256,11 @@ const Welcome = () => {
                 className={"w-28 h-28 text-slate-100"}
               />
 
-              <h3 className="tracking-tight  text-slate-200 float-left text-[43px] font-bold translate-y-[-15px]">
+              <h3 className="tracking-tight  text-slate-200 text-center laptop:text-left text-[43px] font-bold translate-y-[-15px]">
                 GIVE?
               </h3>
 
-              <h3 className=" text-slate-200 float-left text-sm mt-[-20px]">
+              <h3 className=" text-slate-200 text-sm mt-[-20px] text-center laptop:text-left">
                 “Remember this: Whoever sows sparingly will also reap sparingly,
                 and whoever sows generously will also reap generously. Each of
                 you should give what you have decided in your heart to give, not
