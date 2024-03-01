@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Church from "../../../../assets/images/church-logo.png";
+import Church from "../../../assets/images/church-logo.png";
 import { Bars3Icon, ChevronDownIcon } from "@heroicons/react/24/solid";
 import { useLocation } from "react-router-dom";
 import { AdjustmentsHorizontalIcon } from "@heroicons/react/16/solid";
