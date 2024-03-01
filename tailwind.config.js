@@ -38,6 +38,7 @@ module.exports = {
       backgroundImage: {
         church: "url('/src/assets/images/church.jpg')",
         pattern: "url('/src/assets/images/background-pattern.svg')",
+        about1: "url('/src/assets/images/aboutus.jpg')",
         
       },
       margin: {
